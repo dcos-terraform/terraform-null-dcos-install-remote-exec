@@ -177,11 +177,12 @@ module "dcos-masters-install" {
   bootstrap_port       = "${var.dcos_bootstrap_port}"
   os_user              = "${coalesce(var.masters_os_user, var.os_user)}"
   dcos_install_mode    = "${var.dcos_install_mode}"
+  dcos_skip_checks     = "${var.dcos_skip_checks}"
   dcos_version         = "${var.dcos_version}"
   master_ips           = ["${var.master_ips}"]
   num_masters          = "${var.num_masters}"
 
-  depends_on = ["module.dcos-bootstrap-install.depends"]
+  depends_on = ["${module.dcos-bootstrap-install.depends}"]
 }
 
 module "dcos-private-agents-install" {
@@ -192,11 +193,12 @@ module "dcos-private-agents-install" {
   bootstrap_port       = "${var.dcos_bootstrap_port}"
   os_user              = "${coalesce(var.private_agents_os_user, var.os_user)}"
   dcos_install_mode    = "${var.dcos_install_mode}"
+  dcos_skip_checks     = "${var.dcos_skip_checks}"
   dcos_version         = "${var.dcos_version}"
   private_agent_ips    = ["${var.private_agent_ips}"]
   num_private_agents   = "${var.num_private_agents}"
 
-  depends_on = ["module.dcos-masters-install.depends"]
+  depends_on = ["${module.dcos-masters-install.depends}"]
 }
 
 module "dcos-public-agents-install" {
@@ -207,9 +209,10 @@ module "dcos-public-agents-install" {
   bootstrap_port       = "${var.dcos_bootstrap_port}"
   os_user              = "${coalesce(var.public_agents_os_user, var.os_user)}"
   dcos_install_mode    = "${var.dcos_install_mode}"
+  dcos_skip_checks     = "${var.dcos_skip_checks}"
   dcos_version         = "${var.dcos_version}"
   public_agent_ips     = ["${var.public_agent_ips}"]
   num_public_agents    = "${var.num_public_agents}"
 
-  depends_on = ["module.dcos-masters-install.depends"]
+  depends_on = ["${module.dcos-masters-install.depends}"]
 }
