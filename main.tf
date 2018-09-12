@@ -167,6 +167,8 @@ module "dcos-bootstrap-install" {
   dcos_fault_domain_detect_contents            = "${var.dcos_fault_domain_detect_contents}"
   dcos_ip_detect_contents                      = "${var.dcos_ip_detect_contents}"
   dcos_ip_detect_public_contents               = "${var.dcos_ip_detect_public_contents}"
+
+  depends_on = ["${var.bootstrap_prereq-id}"]
 }
 
 module "dcos-masters-install" {
@@ -182,7 +184,8 @@ module "dcos-masters-install" {
   master_ips           = ["${var.master_ips}"]
   num_masters          = "${var.num_masters}"
 
-  depends_on = ["${module.dcos-bootstrap-install.depends}"]
+  trigger = ["${module.dcos-bootstrap-install.depends}"]
+  depends_on = ["${var.masters_prereq-id}"]
 }
 
 module "dcos-private-agents-install" {
@@ -198,7 +201,8 @@ module "dcos-private-agents-install" {
   private_agent_ips    = ["${var.private_agent_ips}"]
   num_private_agents   = "${var.num_private_agents}"
 
-  depends_on = ["${module.dcos-masters-install.depends}"]
+  trigger = ["${module.dcos-masters-install.depends}"]
+  depends_on = ["${var.private_agents_prereq-id}"]
 }
 
 module "dcos-public-agents-install" {
@@ -214,5 +218,6 @@ module "dcos-public-agents-install" {
   public_agent_ips     = ["${var.public_agent_ips}"]
   num_public_agents    = "${var.num_public_agents}"
 
-  depends_on = ["${module.dcos-masters-install.depends}"]
+  trigger = ["${module.dcos-masters-install.depends}"]
+  depends_on = ["${var.public_agents_prereq-id}"]
 }

@@ -12,6 +12,11 @@ variable "bootstrap_os_user" {
   description = "The OS user to be used with ssh exec ( only for bootstrap )"
 }
 
+variable "bootstrap_prereq-id" {
+  description = "Workaround making the bootstrap install depending on an external resource (e.g. nullresource.id)"
+  default = ""
+}
+
 variable "master_ips" {
   type        = "list"
   description = "list of master ips"
@@ -27,6 +32,11 @@ variable "masters_os_user" {
   description = "The OS user to be used with ssh exec ( only for masters )"
 }
 
+variable "masters_prereq-id" {
+  description = "Workaround making the masters install depending on an external resource (e.g. nullresource.id)"
+  default = ""
+}
+
 variable "private_agent_ips" {
   type        = "list"
   description = "list of master private ips"
@@ -37,6 +47,11 @@ variable "private_agents_os_user" {
   description = "The OS user to be used with ssh exec ( only for private agents )"
 }
 
+variable "private_agents_prereq-id" {
+  description = "Workaround making the private agent install depending on an external resource (e.g. nullresource.id)"
+  default = ""
+}
+
 variable "public_agent_ips" {
   type        = "list"
   description = "list of master private ips"
@@ -45,6 +60,11 @@ variable "public_agent_ips" {
 variable "public_agents_os_user" {
   default     = ""
   description = "The OS user to be used with ssh exec ( only for public agents )"
+}
+
+variable "public_agents_prereq-id" {
+  description = "Workaround making the public agent install depending on an external resource (e.g. nullresource.id)"
+  default = ""
 }
 
 variable "num_masters" {
