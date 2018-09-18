@@ -14,7 +14,7 @@ variable "bootstrap_os_user" {
 
 variable "bootstrap_prereq-id" {
   description = "Workaround making the bootstrap install depending on an external resource (e.g. nullresource.id)"
-  default = ""
+  default     = ""
 }
 
 variable "master_ips" {
@@ -34,7 +34,7 @@ variable "masters_os_user" {
 
 variable "masters_prereq-id" {
   description = "Workaround making the masters install depending on an external resource (e.g. nullresource.id)"
-  default = ""
+  default     = ""
 }
 
 variable "private_agent_ips" {
@@ -49,7 +49,7 @@ variable "private_agents_os_user" {
 
 variable "private_agents_prereq-id" {
   description = "Workaround making the private agent install depending on an external resource (e.g. nullresource.id)"
-  default = ""
+  default     = ""
 }
 
 variable "public_agent_ips" {
@@ -64,7 +64,7 @@ variable "public_agents_os_user" {
 
 variable "public_agents_prereq-id" {
   description = "Workaround making the public agent install depending on an external resource (e.g. nullresource.id)"
-  default = ""
+  default     = ""
 }
 
 variable "num_masters" {

@@ -52,7 +52,7 @@
  *
  * echo "{\"fault_domain\":{\"region\":{\"name\": $REGION},\"zone\":{\"name\": $ZONE}}}"
  * EOF
- *   dcos_type                      = "ee"
+ *   dcos_variant                      = "ee"
  *   dcos_license_key_contents      = ""
  *   dcos_master_discovery          = "static"
  *   dcos_exhibitor_storage_backend = "static"
@@ -159,7 +159,7 @@ module "dcos-bootstrap-install" {
   dcos_superuser_password_hash                 = "${var.dcos_superuser_password_hash}"
   dcos_superuser_username                      = "${var.dcos_superuser_username}"
   dcos_telemetry_enabled                       = "${var.dcos_telemetry_enabled}"
-  dcos_type                                    = "${var.dcos_type}"
+  dcos_variant                                 = "${var.dcos_variant}"
   dcos_ucr_default_bridge_subnet               = "${var.dcos_ucr_default_bridge_subnet}"
   dcos_use_proxy                               = "${var.dcos_use_proxy}"
   dcos_version                                 = "${var.dcos_version}"
@@ -184,7 +184,7 @@ module "dcos-masters-install" {
   master_ips           = ["${var.master_ips}"]
   num_masters          = "${var.num_masters}"
 
-  trigger = ["${module.dcos-bootstrap-install.depends}"]
+  trigger    = ["${module.dcos-bootstrap-install.depends}"]
   depends_on = ["${var.masters_prereq-id}"]
 }
 
@@ -201,7 +201,7 @@ module "dcos-private-agents-install" {
   private_agent_ips    = ["${var.private_agent_ips}"]
   num_private_agents   = "${var.num_private_agents}"
 
-  trigger = ["${module.dcos-masters-install.depends}"]
+  trigger    = ["${module.dcos-masters-install.depends}"]
   depends_on = ["${var.private_agents_prereq-id}"]
 }
 
@@ -218,6 +218,6 @@ module "dcos-public-agents-install" {
   public_agent_ips     = ["${var.public_agent_ips}"]
   num_public_agents    = "${var.num_public_agents}"
 
-  trigger = ["${module.dcos-masters-install.depends}"]
+  trigger    = ["${module.dcos-masters-install.depends}"]
   depends_on = ["${var.public_agents_prereq-id}"]
 }
