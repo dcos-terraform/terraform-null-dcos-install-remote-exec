@@ -1,15 +1,15 @@
 variable "os_user" {
   default     = "centos"
-  description = "The OS user to be used with ssh exec"
+  description = "The OS user to be used"
 }
 
 variable "bootstrap_ip" {
-  description = "the bootstrap ip to ssh to"
+  description = "The bootstrap IP to SSH to"
 }
 
 variable "bootstrap_os_user" {
   default     = ""
-  description = "The OS user to be used with ssh exec ( only for bootstrap )"
+  description = "The OS user to be used with ssh exec (only for bootstrap)"
 }
 
 variable "bootstrap_prereq-id" {
@@ -19,7 +19,7 @@ variable "bootstrap_prereq-id" {
 
 variable "master_ips" {
   type        = "list"
-  description = "list of master ips"
+  description = "List of masterips to SSH to"
 }
 
 variable "master_private_ips" {
@@ -39,7 +39,7 @@ variable "masters_prereq-id" {
 
 variable "private_agent_ips" {
   type        = "list"
-  description = "list of master private ips"
+  description = "List of private agent IPs to SSH to"
 }
 
 variable "private_agents_os_user" {
@@ -54,12 +54,12 @@ variable "private_agents_prereq-id" {
 
 variable "public_agent_ips" {
   type        = "list"
-  description = "list of master private ips"
+  description = "List of public agent IPs to SSH to"
 }
 
 variable "public_agents_os_user" {
   default     = ""
-  description = "The OS user to be used with ssh exec ( only for public agents )"
+  description = "The OS user to be used with ssh exec (only for public agents)"
 }
 
 variable "public_agents_prereq-id" {
@@ -68,13 +68,13 @@ variable "public_agents_prereq-id" {
 }
 
 variable "num_masters" {
-  description = "Specify the amount of masters."
+  description = "Specify the amount of masters. For redundancy you should have at least 3"
 }
 
 variable "num_private_agents" {
-  description = "Specify the amount of private agents."
+  description = "Specify the amount of private agents. These agents will provide your main resources"
 }
 
 variable "num_public_agents" {
-  description = "Specify the amount of public agents."
+  description = "Specify the amount of public agents. These agents will host marathon-lb and edgelb"
 }
