@@ -63,8 +63,9 @@ EOF
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| bootstrap_ip | the bootstrap ip to ssh to | string | - | yes |
-| bootstrap_os_user | The OS user to be used with ssh exec ( only for bootstrap ) | string | `` | no |
+| bootstrap_ip | The bootstrap IP to SSH to | string | - | yes |
+| bootstrap_os_user | The OS user to be used with ssh exec (only for bootstrap) | string | `` | no |
+| bootstrap_prereq-id | Workaround making the bootstrap install depending on an external resource (e.g. nullresource.id) | string | `` | no |
 | bootstrap_private_ip | used for the private ip for the bootstrap url | string | `` | no |
 | custom_dcos_download_path | insert location of dcos installer script (optional) | string | `` | no |
 | dcos_adminrouter_tls_1_0_enabled | Indicates whether to enable TLSv1 support in Admin Router. (optional) | string | `` | no |
@@ -130,7 +131,7 @@ EOF
 | dcos_master_dns_bindall | Indicates whether the master DNS port is open. (optional) | string | `` | no |
 | dcos_master_external_loadbalancer | Allows DC/OS to configure certs around the External Load Balancer name. If not used SSL verfication issues will arrise. EE only. (recommended) | string | `` | no |
 | dcos_master_list | statically set your master nodes (not recommended but required with exhibitor_storage_backend set to static. Use aws_s3 or azure instead, that way you can replace masters in the cloud.) | string | `` | no |
-| dcos_mesos_container_log_sink | The log manager for containers (tasks). The options are to send logs to: "journald", "logrotate", "journald+logrotate'". (optional) | string | `` | no |
+| dcos_mesos_container_log_sink | The log manager for containers (tasks). The options are to send logs to: 'journald', 'logrotate', 'journald+logrotate'. (optional) | string | `` | no |
 | dcos_mesos_dns_set_truncate_bit | Indicates whether to set the truncate bit if the response is too large to fit in a single packet. (optional) | string | `` | no |
 | dcos_mesos_max_completed_tasks_per_framework | The number of completed tasks for each framework that the Mesos master will retain in memory. (optional) | string | `` | no |
 | dcos_no_proxy | A YAML nested list (-) of addresses to exclude from the proxy. (optional) | string | `` | no |
@@ -152,29 +153,32 @@ EOF
 | dcos_s3_bucket | name of the s3 bucket for the exhibitor backend (recommended but required with dcos_exhibitor_address) | string | `` | no |
 | dcos_s3_prefix | name of the s3 prefix for the exhibitor backend (recommended but required with dcos_exhibitor_address) | string | `` | no |
 | dcos_security | [Enterprise DC/OS] set the security level of DC/OS. Default is permissive. (recommended) | string | `` | no |
-| dcos_skip_checks | Upgrade option: Used to skip all dcos checks that may block an upgrade if any DC/OS component is unhealthly. (optional) applicable: 1.10+ | string | `true` | no |
+| dcos_skip_checks | Upgrade option: Used to skip all dcos checks that may block an upgrade if any DC/OS component is unhealthly. (optional) applicable: 1.10+ | string | `false` | no |
 | dcos_staged_package_storage_uri | Where to temporarily store DC/OS packages while they are being added. (optional) | string | `` | no |
 | dcos_superuser_password_hash | [Enterprise DC/OS] set the superuser password hash (recommended) | string | `` | no |
 | dcos_superuser_username | [Enterprise DC/OS] set the superuser username (recommended) | string | `` | no |
 | dcos_telemetry_enabled | change the telemetry option (optional) | string | `` | no |
-| dcos_variant | Main Variables | string | `open` | no |
 | dcos_ucr_default_bridge_subnet | IPv4 subnet allocated to the mesos-bridge CNI network for UCR bridge-mode networking. (optional) | string | `` | no |
 | dcos_use_proxy | to enable use of proxy for internal routing (optional) | string | `` | no |
+| dcos_variant | Main Variables | string | `open` | no |
 | dcos_version | specifies which dcos version instruction to use. Options: `1.9.0`, `1.8.8`, etc. _See [dcos_download_path](https://github.com/dcos/tf_dcos_core/blob/master/download-variables.tf) or [dcos_version](https://github.com/dcos/tf_dcos_core/tree/master/dcos-versions) tree for a full list._ | string | `1.9.0` | no |
 | dcos_zk_agent_credentials | [Enterprise DC/OS] set the ZooKeeper agent credentials (recommended) | string | `` | no |
 | dcos_zk_master_credentials | [Enterprise DC/OS] set the ZooKeeper master credentials (recommended) | string | `` | no |
 | dcos_zk_super_credentials | [Enterprise DC/OS] set the zk super credentials (recommended) | string | `` | no |
-| master_ips | list of master ips | list | - | yes |
+| master_ips | List of masterips to SSH to | list | - | yes |
 | master_private_ips | list of master private ips | list | - | yes |
 | masters_os_user | The OS user to be used with ssh exec ( only for masters ) | string | `` | no |
-| num_masters | Specify the amount of masters. | string | - | yes |
+| masters_prereq-id | Workaround making the masters install depending on an external resource (e.g. nullresource.id) | string | `` | no |
+| num_masters | Specify the amount of masters. For redundancy you should have at least 3 | string | - | yes |
 | num_of_private_agents |  | string | `` | no |
 | num_of_public_agents |  | string | `` | no |
-| num_private_agents | Specify the amount of private agents. | string | - | yes |
-| num_public_agents | Specify the amount of public agents. | string | - | yes |
-| os_user | The OS user to be used with ssh exec | string | `centos` | no |
-| private_agent_ips | list of master private ips | list | - | yes |
+| num_private_agents | Specify the amount of private agents. These agents will provide your main resources | string | - | yes |
+| num_public_agents | Specify the amount of public agents. These agents will host marathon-lb and edgelb | string | - | yes |
+| os_user | The OS user to be used | string | `centos` | no |
+| private_agent_ips | List of private agent IPs to SSH to | list | - | yes |
 | private_agents_os_user | The OS user to be used with ssh exec ( only for private agents ) | string | `` | no |
-| public_agent_ips | list of master private ips | list | - | yes |
-| public_agents_os_user | The OS user to be used with ssh exec ( only for public agents ) | string | `` | no |
+| private_agents_prereq-id | Workaround making the private agent install depending on an external resource (e.g. nullresource.id) | string | `` | no |
+| public_agent_ips | List of public agent IPs to SSH to | list | - | yes |
+| public_agents_os_user | The OS user to be used with ssh exec (only for public agents) | string | `` | no |
+| public_agents_prereq-id | Workaround making the public agent install depending on an external resource (e.g. nullresource.id) | string | `` | no |
 
