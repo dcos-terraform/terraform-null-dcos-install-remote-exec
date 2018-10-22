@@ -8,7 +8,7 @@
  * ```hcl
  *  module "dcos-install" {
  *   source = "dcos-terraform/dcos-install-remote-exec/null"
- *   version = "~> 0.0"
+ *   version = "~> 0.1"
  *   bootstrap_ip         = "${module.dcos-infrastructure.bootstrap.public_ip}"
  *   bootstrap_private_ip = "${module.dcos-infrastructure.bootstrap.private_ip}"
  *   bootstrap_os_user    = "${module.dcos-infrastructure.bootstrap.os_user}"
@@ -62,7 +62,7 @@
 
 module "dcos-bootstrap-install" {
   source  = "dcos-terraform/dcos-install-bootstrap-remote-exec/null"
-  version = "~> 0.0"
+  version = "~> 0.1"
 
   bootstrap_ip         = "${var.bootstrap_ip}"
   bootstrap_private_ip = "${var.bootstrap_private_ip}"
@@ -173,7 +173,7 @@ module "dcos-bootstrap-install" {
 
 module "dcos-masters-install" {
   source  = "dcos-terraform/dcos-install-masters-remote-exec/null"
-  version = "~> 0.0"
+  version = "~> 0.1"
 
   bootstrap_private_ip = "${var.bootstrap_private_ip}"
   bootstrap_port       = "${var.dcos_bootstrap_port}"
@@ -190,7 +190,7 @@ module "dcos-masters-install" {
 
 module "dcos-private-agents-install" {
   source  = "dcos-terraform/dcos-install-private-agents-remote-exec/null"
-  version = "~> 0.0"
+  version = "~> 0.1"
 
   bootstrap_private_ip = "${var.bootstrap_private_ip}"
   bootstrap_port       = "${var.dcos_bootstrap_port}"
@@ -207,7 +207,7 @@ module "dcos-private-agents-install" {
 
 module "dcos-public-agents-install" {
   source  = "dcos-terraform/dcos-install-public-agents-remote-exec/null"
-  version = "~> 0.0"
+  version = "~> 0.1"
 
   bootstrap_private_ip = "${var.bootstrap_private_ip}"
   bootstrap_port       = "${var.dcos_bootstrap_port}"

@@ -7,7 +7,7 @@ EXAMPLE
 ```hcl
  module "dcos-install" {
   source = "dcos-terraform/dcos-install-remote-exec/null"
-  version = "~> 0.0"
+  version = "~> 0.1"
   bootstrap_ip         = "${module.dcos-infrastructure.bootstrap.public_ip}"
   bootstrap_private_ip = "${module.dcos-infrastructure.bootstrap.private_ip}"
   bootstrap_os_user    = "${module.dcos-infrastructure.bootstrap.os_user}"
