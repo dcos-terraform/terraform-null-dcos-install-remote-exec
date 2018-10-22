@@ -182,3 +182,9 @@ EOF
 | public_agents_os_user | The OS user to be used with ssh exec (only for public agents) | string | `` | no |
 | public_agents_prereq-id | Workaround making the public agent install depending on an external resource (e.g. nullresource.id) | string | `` | no |
 
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| depends | Modules are missing the depends_on feature. Faking this feature with input and output variables |
+
