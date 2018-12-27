@@ -78,3 +78,8 @@ variable "num_private_agents" {
 variable "num_public_agents" {
   description = "Specify the amount of public agents. These agents will host marathon-lb and edgelb"
 }
+
+variable "enable_bootstrap" {
+  description = "Sets whether to deploy bootstrap commands on provided ip address"
+  default = "true"
+}

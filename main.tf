@@ -64,6 +64,7 @@ module "dcos-bootstrap-install" {
   source  = "dcos-terraform/dcos-install-bootstrap-remote-exec/null"
   version = "~> 0.1"
 
+  enable_bootstrap     = "${var.enable_bootstrap}"
   bootstrap_ip         = "${var.bootstrap_ip}"
   bootstrap_private_ip = "${var.bootstrap_private_ip}"
   os_user              = "${coalesce(var.bootstrap_os_user, var.os_user)}"

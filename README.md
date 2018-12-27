@@ -165,6 +165,7 @@ EOF
 | dcos_zk_agent_credentials | [Enterprise DC/OS] set the ZooKeeper agent credentials (recommended) | string | `` | no |
 | dcos_zk_master_credentials | [Enterprise DC/OS] set the ZooKeeper master credentials (recommended) | string | `` | no |
 | dcos_zk_super_credentials | [Enterprise DC/OS] set the zk super credentials (recommended) | string | `` | no |
+| enable_bootstrap | Sets whether to deploy bootstrap commands on provided ip address | string | `true` | no |
 | master_ips | List of masterips to SSH to | list | - | yes |
 | master_private_ips | list of master private ips | list | - | yes |
 | masters_os_user | The OS user to be used with ssh exec ( only for masters ) | string | `` | no |
