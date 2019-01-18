@@ -61,7 +61,7 @@
  */
 
 module "dcos-bootstrap-install" {
-  source = "git@github.com:dcos-terraform/terraform-null-dcos-install-bootstrap-remote-exec.git?ref=gracedo/enable_mesos_input_plugin_config_option"
+  source = "git::ssh://git@github.com/dcos-terraform/terraform-null-dcos-install-bootstrap-remote-exec.git?ref=gracedo/enable_mesos_input_plugin_config_option"
 
   // version = "~> 0.1.0"
 
