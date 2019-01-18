@@ -61,17 +61,16 @@
  */
 
 module "dcos-bootstrap-install" {
-  source  = "dcos-terraform/dcos-install-bootstrap-remote-exec/null"
-  version = "~> 0.1.0"
+  source = "git@github.com:dcos-terraform/terraform-null-dcos-install-bootstrap-remote-exec.git?ref=gracedo/enable_mesos_input_plugin_config_option"
 
-  bootstrap_ip         = "${var.bootstrap_ip}"
-  bootstrap_private_ip = "${var.bootstrap_private_ip}"
-  os_user              = "${coalesce(var.bootstrap_os_user, var.os_user)}"
-  master_ips           = ["${var.master_private_ips}"]
-  dcos_num_masters     = "${var.num_masters}"
+  // version = "~> 0.1.0"
 
-  dcos_install_mode = "${var.dcos_install_mode}"
-
+  bootstrap_ip                                 = "${var.bootstrap_ip}"
+  bootstrap_private_ip                         = "${var.bootstrap_private_ip}"
+  os_user                                      = "${coalesce(var.bootstrap_os_user, var.os_user)}"
+  master_ips                                   = ["${var.master_private_ips}"]
+  dcos_num_masters                             = "${var.num_masters}"
+  dcos_install_mode                            = "${var.dcos_install_mode}"
   custom_dcos_download_path                    = "${var.custom_dcos_download_path}"
   dcos_adminrouter_tls_1_0_enabled             = "${var.dcos_adminrouter_tls_1_0_enabled}"
   dcos_adminrouter_tls_1_1_enabled             = "${var.dcos_adminrouter_tls_1_1_enabled}"
@@ -167,8 +166,8 @@ module "dcos-bootstrap-install" {
   dcos_fault_domain_detect_contents            = "${var.dcos_fault_domain_detect_contents}"
   dcos_ip_detect_contents                      = "${var.dcos_ip_detect_contents}"
   dcos_ip_detect_public_contents               = "${var.dcos_ip_detect_public_contents}"
-
-  depends_on = ["${var.bootstrap_prereq-id}"]
+  enable_mesos_input_plugin                    = "${var.enable_mesos_input_plugin}"
+  depends_on                                   = ["${var.bootstrap_prereq-id}"]
 }
 
 module "dcos-masters-install" {
