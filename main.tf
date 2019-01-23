@@ -61,9 +61,9 @@
  */
 
 module "dcos-bootstrap-install" {
-  source = "git::https://github.com/dcos-terraform/terraform-null-dcos-install-bootstrap-remote-exec.git?ref=gracedo/enable_mesos_input_plugin_config_option"
+  source = "dcos-terraform/dcos-install-bootstrap-remote-exec/null"
 
-  // version = "~> 0.1.0"
+  version = "~> 0.1.0"
 
   bootstrap_ip                                 = "${var.bootstrap_ip}"
   bootstrap_private_ip                         = "${var.bootstrap_private_ip}"
@@ -166,7 +166,7 @@ module "dcos-bootstrap-install" {
   dcos_fault_domain_detect_contents            = "${var.dcos_fault_domain_detect_contents}"
   dcos_ip_detect_contents                      = "${var.dcos_ip_detect_contents}"
   dcos_ip_detect_public_contents               = "${var.dcos_ip_detect_public_contents}"
-  enable_mesos_input_plugin                    = "${var.enable_mesos_input_plugin}"
+  dcos_enable_mesos_input_plugin               = "${var.dcos_enable_mesos_input_plugin}"
   depends_on                                   = ["${var.bootstrap_prereq-id}"]
 }
 
