@@ -61,7 +61,7 @@
  */
 
 module "dcos-bootstrap-install" {
-  source = "github.com/dcos-terraform/terraform-null-dcos-install-bootstrap-remote-exec?ref=conditional-bootstrap"
+  source = "github.com/dcos-terraform/terraform-null-dcos-install-bootstrap-remote-exec?ref=conditional-bootstrap-test-only"
 
   #source  = "dcos-terraform/dcos-install-bootstrap-remote-exec/null"
   version = "~> 0.1.0"
