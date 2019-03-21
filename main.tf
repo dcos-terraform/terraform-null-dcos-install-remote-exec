@@ -119,7 +119,6 @@ module "dcos-core" {
   dcos_gpus_are_scarce                         = "${var.dcos_gpus_are_scarce}"
   dcos_http_proxy                              = "${var.dcos_http_proxy}"
   dcos_https_proxy                             = "${var.dcos_https_proxy}"
-  dcos_install_mode                            = "${var.dcos_install_mode}"
   dcos_ip_detect_public_filename               = "${var.dcos_ip_detect_public_filename}"
   dcos_l4lb_enable_ipv6                        = "${var.dcos_l4lb_enable_ipv6}"
   dcos_license_key_contents                    = "${var.dcos_license_key_contents}"
