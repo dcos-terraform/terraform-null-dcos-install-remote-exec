@@ -60,15 +60,12 @@
  * ```
  */
 
-module "dcos-bootstrap-install" {
-  source = "dcos-terraform/dcos-install-bootstrap-remote-exec/null"
+module "dcos-core" {
+  source = "dcos-terraform/dcos-core/template"
 
   version = "~> 0.1.0"
 
-  bootstrap_ip                                 = "${var.bootstrap_ip}"
   bootstrap_private_ip                         = "${var.bootstrap_private_ip}"
-  os_user                                      = "${coalesce(var.bootstrap_os_user, var.os_user)}"
-  master_ips                                   = ["${var.master_private_ips}"]
   dcos_num_masters                             = "${var.num_masters}"
   dcos_install_mode                            = "${var.dcos_install_mode}"
   custom_dcos_download_path                    = "${var.custom_dcos_download_path}"
@@ -129,6 +126,7 @@ module "dcos-bootstrap-install" {
   dcos_license_key_contents                    = "${var.dcos_license_key_contents}"
   dcos_log_directory                           = "${var.dcos_log_directory}"
   dcos_master_discovery                        = "${var.dcos_master_discovery}"
+  dcos_master_list                             = ["${var.master_private_ips}"]
   dcos_master_dns_bindall                      = "${var.dcos_master_dns_bindall}"
   dcos_master_external_loadbalancer            = "${var.dcos_master_external_loadbalancer}"
   dcos_mesos_container_log_sink                = "${var.dcos_mesos_container_log_sink}"
@@ -146,7 +144,7 @@ module "dcos-bootstrap-install" {
   dcos_previous_version_master_index           = "${var.dcos_previous_version_master_index}"
   dcos_process_timeout                         = "${var.dcos_process_timeout}"
   dcos_public_agent_list                       = "${var.dcos_public_agent_list}"
-  dcos_resolvers                               = "${var.dcos_resolvers}"
+  dcos_resolvers                               = ["${var.dcos_resolvers}"]
   dcos_rexray_config                           = "${var.dcos_rexray_config}"
   dcos_rexray_config_filename                  = "${var.dcos_rexray_config_filename}"
   dcos_rexray_config_method                    = "${var.dcos_rexray_config_method}"
@@ -167,56 +165,21 @@ module "dcos-bootstrap-install" {
   dcos_ip_detect_contents                      = "${var.dcos_ip_detect_contents}"
   dcos_ip_detect_public_contents               = "${var.dcos_ip_detect_public_contents}"
   dcos_enable_mesos_input_plugin               = "${var.dcos_enable_mesos_input_plugin}"
-  depends_on                                   = ["${var.bootstrap_prereq-id}"]
+  role                                         = "dcos-mesos-master"
 }
 
-module "dcos-masters-install" {
-  source  = "dcos-terraform/dcos-install-masters-remote-exec/null"
+module "dcos-install" {
+  source  = "dcos-terraform/dcos-install-remote-exec-ansible/null"
   version = "~> 0.1.0"
 
-  bootstrap_private_ip = "${var.bootstrap_private_ip}"
-  bootstrap_port       = "${var.dcos_bootstrap_port}"
-  os_user              = "${coalesce(var.masters_os_user, var.os_user)}"
-  dcos_install_mode    = "${var.dcos_install_mode}"
-  dcos_skip_checks     = "${var.dcos_skip_checks}"
-  dcos_version         = "${var.dcos_version}"
-  master_ips           = ["${var.master_ips}"]
-  num_masters          = "${var.num_masters}"
-
-  trigger    = ["${module.dcos-bootstrap-install.depends}"]
-  depends_on = ["${var.masters_prereq-id}"]
-}
-
-module "dcos-private-agents-install" {
-  source  = "dcos-terraform/dcos-install-private-agents-remote-exec/null"
-  version = "~> 0.1.0"
-
-  bootstrap_private_ip = "${var.bootstrap_private_ip}"
-  bootstrap_port       = "${var.dcos_bootstrap_port}"
-  os_user              = "${coalesce(var.private_agents_os_user, var.os_user)}"
-  dcos_install_mode    = "${var.dcos_install_mode}"
-  dcos_skip_checks     = "${var.dcos_skip_checks}"
-  dcos_version         = "${var.dcos_version}"
-  private_agent_ips    = ["${var.private_agent_ips}"]
-  num_private_agents   = "${var.num_private_agents}"
-
-  trigger    = ["${module.dcos-masters-install.depends}"]
-  depends_on = ["${var.private_agents_prereq-id}"]
-}
-
-module "dcos-public-agents-install" {
-  source  = "dcos-terraform/dcos-install-public-agents-remote-exec/null"
-  version = "~> 0.1.0"
-
-  bootstrap_private_ip = "${var.bootstrap_private_ip}"
-  bootstrap_port       = "${var.dcos_bootstrap_port}"
-  os_user              = "${coalesce(var.public_agents_os_user, var.os_user)}"
-  dcos_install_mode    = "${var.dcos_install_mode}"
-  dcos_skip_checks     = "${var.dcos_skip_checks}"
-  dcos_version         = "${var.dcos_version}"
-  public_agent_ips     = ["${var.public_agent_ips}"]
-  num_public_agents    = "${var.num_public_agents}"
-
-  trigger    = ["${module.dcos-masters-install.depends}"]
-  depends_on = ["${var.public_agents_prereq-id}"]
+  bootstrap_ip              = "${var.bootstrap_ip}"
+  bootstrap_private_ip      = "${var.bootstrap_private_ip}"
+  master_private_ips        = ["${var.master_private_ips}"]
+  private_agent_private_ips = ["${var.private_agent_private_ips}"]
+  public_agent_private_ips  = ["${var.public_agent_private_ips}"]
+  dcos_download_url         = "${module.dcos-core.download_url}"
+  dcos_version              = "${var.dcos_version}"
+  dcos_variant              = "${var.dcos_variant}"
+  dcos_config_yml           = "${module.dcos-core.config}"
+  depends_on                = ["${uuid()}"]
 }

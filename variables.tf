@@ -78,3 +78,13 @@ variable "num_private_agents" {
 variable "num_public_agents" {
   description = "Specify the amount of public agents. These agents will host marathon-lb and edgelb"
 }
+
+variable "private_agent_private_ips" {
+  type        = "list"
+  description = "List of private agent IPs to SSH to"
+}
+
+variable "public_agent_private_ips" {
+  type        = "list"
+  description = "List of public agent IPs to SSH to"
+}

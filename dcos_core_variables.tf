@@ -8,14 +8,8 @@ variable "bootstrap_private_ip" {
   description = "used for the private ip for the bootstrap url"
 }
 
-variable "dcos_install_mode" {
-  default     = "install"
-  description = "specifies which type of command to execute. Options: `install` or `upgrade`"
-}
-
 variable "dcos_version" {
-  default     = "1.9.0"
-  description = "specifies which dcos version instruction to use. Options: `1.9.0`, `1.8.8`, etc. _See [dcos_download_path](https://github.com/dcos/tf_dcos_core/blob/master/download-variables.tf) or [dcos_version](https://github.com/dcos/tf_dcos_core/tree/master/dcos-versions) tree for a full list._"
+  description = "specifies which dcos version instruction to use. Options: `1.9.0`, `1.8.8`, etc. _See [dcos_download_path](https://github.com/dcos-terraform/terraform-template-dcos-core/blob/master/open/download-variables.tf) or [dcos_version](https://github.com/dcos-terraform/terraform-template-dcos-core/tree/master/open/dcos-versions) tree for a full list._"
 }
 
 # variable "role" {
@@ -29,8 +23,8 @@ variable "dcos_security" {
 }
 
 variable "dcos_resolvers" {
-  default     = ""
-  description = "A YAML nested list (-) of DNS resolvers for your DC/OS cluster nodes. (recommended)"
+  default     = ["8.8.8.8", "8.8.4.4"]
+  description = "list of DNS resolvers for your DC/OS cluster nodes. (recommended)"
 }
 
 variable "dcos_skip_checks" {
@@ -49,7 +43,7 @@ variable "dcos_master_external_loadbalancer" {
 }
 
 variable "dcos_master_discovery" {
-  default     = ""
+  default     = "static"
   description = "The Mesos master discovery method. The available options are static or master_http_loadbalancer. (recommend the use of master_http_loadbalancer)"
 }
 
@@ -84,7 +78,7 @@ variable "dcos_aws_template_storage_secret_access_key" {
 }
 
 variable "dcos_exhibitor_storage_backend" {
-  default     = ""
+  default     = "static"
   description = "options are aws_s3, azure, or zookeeper (recommended)"
 }
 
@@ -251,7 +245,8 @@ variable "dcos_enable_gpu_isolation" {
 }
 
 variable "dcos_fault_domain_detect_contents" {
-  default     = ""
+  default = ""
+
   description = "[Enterprise DC/OS] fault domain script contents. Optional but required if no fault-domain-detect script present."
 }
 
@@ -432,7 +427,7 @@ variable "dcos_master_list" {
 }
 
 variable "dcos_public_agent_list" {
-  default     = ""
+  default     = []
   description = "statically set your public agents (not recommended)"
 }
 
@@ -447,12 +442,12 @@ variable "dcos_previous_version_master_index" {
 }
 
 variable "dcos_agent_list" {
-  default     = ""
+  default     = []
   description = "used to list the agents in the config.yaml (optional)"
 }
 
 variable "dcos_bootstrap_port" {
-  default     = "80"
+  default     = "8080"
   description = "used to specify the port of the bootstrap url"
 }
 
@@ -462,12 +457,14 @@ variable "dcos_ip_detect_public_filename" {
 }
 
 variable "dcos_ip_detect_public_contents" {
-  default     = ""
+  default = ""
+
   description = " Allows DC/OS to be aware of your publicly routeable address for ease of use (recommended)"
 }
 
 variable "dcos_ip_detect_contents" {
-  default     = ""
+  default = ""
+
   description = "Allows DC/OS to detect your private address. Use this to pass this as an input to the module rather than a file in side your bootstrap node. (recommended)"
 }
 
