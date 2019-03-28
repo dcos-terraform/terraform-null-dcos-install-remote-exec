@@ -88,3 +88,13 @@ variable "public_agent_private_ips" {
   type        = "list"
   description = "List of public agent IPs to SSH to"
 }
+
+variable "ansible_bundled_container" {
+  default     = "mesosphere/dcos-ansible-bundle:latest"
+  description = "Docker container with bundled dcos-ansible and ansible executables"
+}
+
+variable "ansible_additional_config" {
+  default     = ""
+  description = "Add additional config options to ansible. This is getting merged with generated defaults. Do not specify `dcos:`"
+}

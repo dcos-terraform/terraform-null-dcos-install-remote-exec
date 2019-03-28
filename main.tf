@@ -178,5 +178,7 @@ module "dcos-install" {
   dcos_version              = "${var.dcos_version}"
   dcos_variant              = "${var.dcos_variant}"
   dcos_config_yml           = "${module.dcos-core.config}"
+  ansible_bundled_container = "${var.ansible_bundled_container}"
+  ansible_additional_config = "${var.ansible_additional_config}"
   depends_on                = ["${uuid()}"]
 }
