@@ -98,3 +98,8 @@ variable "ansible_additional_config" {
   default     = ""
   description = "Add additional config options to ansible. This is getting merged with generated defaults. Do not specify `dcos:`"
 }
+
+variable "ansible_force_run" {
+  default     = false
+  description = "Run Ansible on every Terraform apply"
+}

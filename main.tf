@@ -171,6 +171,7 @@ module "dcos-install" {
 
   bootstrap_ip              = "${var.bootstrap_ip}"
   bootstrap_private_ip      = "${var.bootstrap_private_ip}"
+  bootstrap_os_user         = "${var.bootstrap_os_user}"
   master_private_ips        = ["${var.master_private_ips}"]
   private_agent_private_ips = ["${var.private_agent_private_ips}"]
   public_agent_private_ips  = ["${var.public_agent_private_ips}"]
@@ -180,5 +181,5 @@ module "dcos-install" {
   dcos_config_yml           = "${module.dcos-core.config}"
   ansible_bundled_container = "${var.ansible_bundled_container}"
   ansible_additional_config = "${var.ansible_additional_config}"
-  depends_on                = ["${uuid()}"]
+  ansible_force_run         = "${var.ansible_force_run}"
 }
