@@ -8,7 +8,7 @@
  * ```hcl
  *  module "dcos-install" {
  *   source = "dcos-terraform/dcos-install-remote-exec/null"
- *   version = "~> 0.1.0"
+ *   version = "~> 0.2.0"
  *   bootstrap_ip         = "${module.dcos-infrastructure.bootstrap.public_ip}"
  *   bootstrap_private_ip = "${module.dcos-infrastructure.bootstrap.private_ip}"
  *   bootstrap_os_user    = "${module.dcos-infrastructure.bootstrap.os_user}"
@@ -61,9 +61,8 @@
  */
 
 module "dcos-core" {
-  source = "dcos-terraform/dcos-core/template"
-
-  version = "~> 0.1.0"
+  source  = "dcos-terraform/dcos-core/template"
+  version = "~> 0.2.0"
 
   bootstrap_private_ip                         = "${var.bootstrap_private_ip}"
   dcos_num_masters                             = "${var.num_masters}"
@@ -167,7 +166,7 @@ module "dcos-core" {
 
 module "dcos-install" {
   source  = "dcos-terraform/dcos-install-remote-exec-ansible/null"
-  version = "~> 0.1.0"
+  version = "~> 0.2.0"
 
   bootstrap_ip              = "${var.bootstrap_ip}"
   bootstrap_private_ip      = "${var.bootstrap_private_ip}"
