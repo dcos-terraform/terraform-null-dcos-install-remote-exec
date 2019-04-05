@@ -64,6 +64,7 @@ EOF
 |------|-------------|:----:|:-----:|:-----:|
 | ansible\_additional\_config | Add additional config options to ansible. This is getting merged with generated defaults. Do not specify `dcos:` | string | `""` | no |
 | ansible\_bundled\_container | Docker container with bundled dcos-ansible and ansible executables | string | `"mesosphere/dcos-ansible-bundle:latest"` | no |
+| ansible\_force\_run | Run Ansible on every Terraform apply | string | `"false"` | no |
 | bootstrap\_ip | The bootstrap IP to SSH to | string | n/a | yes |
 | bootstrap\_os\_user | The OS user to be used with ssh exec (only for bootstrap) | string | `""` | no |
 | bootstrap\_prereq-id | Workaround making the bootstrap install depending on an external resource (e.g. nullresource.id) | string | `""` | no |
