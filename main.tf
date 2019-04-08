@@ -18,17 +18,19 @@
  *   masters_os_user    = "${module.dcos-infrastructure.masters.os_user}"
  *   num_masters        = "${var.num_masters}"
  *
- *   private_agent_ips      = ["${module.dcos-infrastructure.private_agents.public_ips}"]
- *   private_agents_os_user = "${module.dcos-infrastructure.private_agents.os_user}"
- *   num_private_agents = "${var.num_private_agents}"
+ *   private_agent_ips         = ["${module.dcos-infrastructure.private_agents.public_ips}"]
+ *   private_agent_private_ips = ["${module.dcos-infrastructure.private_agents.private_ips}"]
+ *   private_agents_os_user    = "${module.dcos-infrastructure.private_agents.os_user}"
+ *   num_private_agents        = "${var.num_private_agents}"
  *
- *   public_agent_ips      = ["${module.dcos-infrastructure.public_agents.public_ips}"]
- *   public_agents_os_user = "${module.dcos-infrastructure.public_agents.os_user}"
- *   num_public_agents  = "${var.num_public_agents}"
+ *   public_agent_ips         = ["${module.dcos-infrastructure.public_agents.public_ips}"]
+ *   public_agent_private_ips = ["${module.dcos-infrastructure.public_agents.private_ips}"]
+ *   public_agents_os_user    = "${module.dcos-infrastructure.public_agents.os_user}"
+ *   num_public_agents        = "${var.num_public_agents}"
  *
- *   dcos_install_mode = "install"
  *   dcos_cluster_name = "${var.cluster_name}"
  *   dcos_version      = "${var.dcos_version}"
+ *
  *   dcos_ip_detect_public_contents = <<EOF
  * #!/bin/sh
  * set -o nounset -o errexit

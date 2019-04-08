@@ -17,17 +17,19 @@ EXAMPLE
   masters_os_user    = "${module.dcos-infrastructure.masters.os_user}"
   num_masters        = "${var.num_masters}"
 
-  private_agent_ips      = ["${module.dcos-infrastructure.private_agents.public_ips}"]
-  private_agents_os_user = "${module.dcos-infrastructure.private_agents.os_user}"
-  num_private_agents = "${var.num_private_agents}"
+  private_agent_ips         = ["${module.dcos-infrastructure.private_agents.public_ips}"]
+  private_agent_private_ips = ["${module.dcos-infrastructure.private_agents.private_ips}"]
+  private_agents_os_user    = "${module.dcos-infrastructure.private_agents.os_user}"
+  num_private_agents        = "${var.num_private_agents}"
 
-  public_agent_ips      = ["${module.dcos-infrastructure.public_agents.public_ips}"]
-  public_agents_os_user = "${module.dcos-infrastructure.public_agents.os_user}"
-  num_public_agents  = "${var.num_public_agents}"
+  public_agent_ips         = ["${module.dcos-infrastructure.public_agents.public_ips}"]
+  public_agent_private_ips = ["${module.dcos-infrastructure.public_agents.private_ips}"]
+  public_agents_os_user    = "${module.dcos-infrastructure.public_agents.os_user}"
+  num_public_agents        = "${var.num_public_agents}"
 
-  dcos_install_mode = "install"
   dcos_cluster_name = "${var.cluster_name}"
   dcos_version      = "${var.dcos_version}"
+
   dcos_ip_detect_public_contents = <<EOF
 #!/bin/sh
 set -o nounset -o errexit
@@ -62,10 +64,20 @@ EOF
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
+| bootstrap\_ip | The bootstrap IP to SSH to | string | n/a | yes |
+| dcos\_version | Specifies which DC/OS version instruction to use. Options: 1.12.3, 1.11.10, etc. See dcos_download_path or dcos_version tree for a full list. | string | n/a | yes |
+| master\_ips | List of masterips to SSH to | list | n/a | yes |
+| master\_private\_ips | list of master private ips | list | n/a | yes |
+| num\_masters | Specify the amount of masters. For redundancy you should have at least 3 | string | n/a | yes |
+| num\_private\_agents | Specify the amount of private agents. These agents will provide your main resources | string | n/a | yes |
+| num\_public\_agents | Specify the amount of public agents. These agents will host marathon-lb and edgelb | string | n/a | yes |
+| private\_agent\_ips | List of private agent IPs to SSH to | list | n/a | yes |
+| private\_agent\_private\_ips | List of private agent IPs to SSH to | list | n/a | yes |
+| public\_agent\_ips | List of public agent IPs to SSH to | list | n/a | yes |
+| public\_agent\_private\_ips | List of public agent IPs to SSH to | list | n/a | yes |
 | ansible\_additional\_config | Add additional config options to ansible. This is getting merged with generated defaults. Do not specify `dcos:` | string | `""` | no |
 | ansible\_bundled\_container | Docker container with bundled dcos-ansible and ansible executables | string | `"mesosphere/dcos-ansible-bundle:latest"` | no |
 | ansible\_force\_run | Run Ansible on every Terraform apply | string | `"false"` | no |
-| bootstrap\_ip | The bootstrap IP to SSH to | string | n/a | yes |
 | bootstrap\_os\_user | The OS user to be used with ssh exec (only for bootstrap) | string | `""` | no |
 | bootstrap\_prereq-id | Workaround making the bootstrap install depending on an external resource (e.g. nullresource.id) | string | `""` | no |
 | bootstrap\_private\_ip | Private IP bootstrap nginx is listening on. Used to build the bootstrap URL. | string | `""` | no |
@@ -163,26 +175,16 @@ EOF
 | dcos\_ucr\_default\_bridge\_subnet | IPv4 subnet allocated to the mesos-bridge CNI network for UCR bridge-mode networking. (optional) | string | `""` | no |
 | dcos\_use\_proxy | To enable use of proxy for internal routing (optional) | string | `""` | no |
 | dcos\_variant | Main Variables | string | `"open"` | no |
-| dcos\_version | Specifies which DC/OS version instruction to use. Options: 1.12.3, 1.11.10, etc. See dcos_download_path or dcos_version tree for a full list. | string | n/a | yes |
 | dcos\_zk\_agent\_credentials | [Enterprise DC/OS] set the ZooKeeper agent credentials (recommended) | string | `""` | no |
 | dcos\_zk\_master\_credentials | [Enterprise DC/OS] set the ZooKeeper master credentials (recommended) | string | `""` | no |
 | dcos\_zk\_super\_credentials | [Enterprise DC/OS] set the zk super credentials (recommended) | string | `""` | no |
-| master\_ips | List of masterips to SSH to | list | n/a | yes |
-| master\_private\_ips | list of master private ips | list | n/a | yes |
 | masters\_os\_user | The OS user to be used with ssh exec ( only for masters ) | string | `""` | no |
 | masters\_prereq-id | Workaround making the masters install depending on an external resource (e.g. nullresource.id) | string | `""` | no |
-| num\_masters | Specify the amount of masters. For redundancy you should have at least 3 | string | n/a | yes |
 | num\_of\_private\_agents | UNDEFINED | string | `""` | no |
 | num\_of\_public\_agents | UNDEFINED | string | `""` | no |
-| num\_private\_agents | Specify the amount of private agents. These agents will provide your main resources | string | n/a | yes |
-| num\_public\_agents | Specify the amount of public agents. These agents will host marathon-lb and edgelb | string | n/a | yes |
 | os\_user | The OS user to be used | string | `"centos"` | no |
-| private\_agent\_ips | List of private agent IPs to SSH to | list | n/a | yes |
-| private\_agent\_private\_ips | List of private agent IPs to SSH to | list | n/a | yes |
 | private\_agents\_os\_user | The OS user to be used with ssh exec ( only for private agents ) | string | `""` | no |
 | private\_agents\_prereq-id | Workaround making the private agent install depending on an external resource (e.g. nullresource.id) | string | `""` | no |
-| public\_agent\_ips | List of public agent IPs to SSH to | list | n/a | yes |
-| public\_agent\_private\_ips | List of public agent IPs to SSH to | list | n/a | yes |
 | public\_agents\_os\_user | The OS user to be used with ssh exec (only for public agents) | string | `""` | no |
 | public\_agents\_prereq-id | Workaround making the public agent install depending on an external resource (e.g. nullresource.id) | string | `""` | no |
 
