@@ -101,7 +101,7 @@ EOF
 | dcos\_bootstrap\_port | Port of the bootstrap URL | string | `"8080"` | no |
 | dcos\_bouncer\_expiration\_auth\_token\_days | [Enterprise DC/OS] Sets the auth token time-to-live (TTL) for Identity and Access Management. (optional) | string | `""` | no |
 | dcos\_ca\_certificate\_chain\_path | [Enterprise DC/OS] Path (relative to the $DCOS_INSTALL_DIR) to a file containing the complete CA certification chain required for end-entity certificate verification, in the OpenSSL PEM format. (optional) | string | `""` | no |
-| dcos\_ca\_certificate\_key\_path | DC/OS CA certificate key path | string | `""` | no |
+| dcos\_ca\_certificate\_key\_path | [Enterprise DC/OS] Path (relative to the $DCOS_INSTALL_DIR) to a file containing a single X.509 certificate private key in the OpenSSL PEM format. (optional) | string | `""` | no |
 | dcos\_ca\_certificate\_path | [Enterprise DC/OS] Path (relative to the $DCOS_INSTALL_DIR) to a file containing a single X.509 CA certificate in the OpenSSL PEM format. (optional) | string | `""` | no |
 | dcos\_check\_time | Check if Network Time Protocol (NTP) is enabled during DC/OS startup. (optional) | string | `""` | no |
 | dcos\_cluster\_docker\_credentials | Dictionary of Docker credentials to pass. (optional) | string | `""` | no |
@@ -174,14 +174,14 @@ EOF
 | dcos\_telemetry\_enabled | Change the telemetry option (optional) | string | `""` | no |
 | dcos\_ucr\_default\_bridge\_subnet | IPv4 subnet allocated to the mesos-bridge CNI network for UCR bridge-mode networking. (optional) | string | `""` | no |
 | dcos\_use\_proxy | To enable use of proxy for internal routing (optional) | string | `""` | no |
-| dcos\_variant | Main Variables | string | `"open"` | no |
+| dcos\_variant | Specifies which DC/OS variant it should be: `open` (Open Source) or `ee` (Enterprise Edition) | string | `"open"` | no |
 | dcos\_zk\_agent\_credentials | [Enterprise DC/OS] set the ZooKeeper agent credentials (recommended) | string | `""` | no |
 | dcos\_zk\_master\_credentials | [Enterprise DC/OS] set the ZooKeeper master credentials (recommended) | string | `""` | no |
 | dcos\_zk\_super\_credentials | [Enterprise DC/OS] set the zk super credentials (recommended) | string | `""` | no |
 | masters\_os\_user | The OS user to be used with ssh exec ( only for masters ) | string | `""` | no |
 | masters\_prereq-id | Workaround making the masters install depending on an external resource (e.g. nullresource.id) | string | `""` | no |
-| num\_of\_private\_agents | UNDEFINED | string | `""` | no |
-| num\_of\_public\_agents | UNDEFINED | string | `""` | no |
+| num\_of\_private\_agents | Specify the amount of private agents. These agents will provide your main resources | string | `""` | no |
+| num\_of\_public\_agents | Specify the amount of public agents. These agents will host marathon-lb and edgelb | string | `""` | no |
 | os\_user | The OS user to be used | string | `"centos"` | no |
 | private\_agents\_os\_user | The OS user to be used with ssh exec ( only for private agents ) | string | `""` | no |
 | private\_agents\_prereq-id | Workaround making the private agent install depending on an external resource (e.g. nullresource.id) | string | `""` | no |
