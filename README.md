@@ -192,5 +192,6 @@ EOF
 
 | Name | Description |
 |------|-------------|
+| config | The battle-tested provisioner contents of the output by DC/OS role to perform requried admin actions in behalf of the user as documented in http://mesosphere.com and http://dcos.io |
 | depends | Modules are missing the depends_on feature. Faking this feature with input and output variables |
 
