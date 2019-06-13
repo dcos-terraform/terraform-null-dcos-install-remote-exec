@@ -65,7 +65,7 @@ EOF
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | bootstrap\_ip | The bootstrap IP to SSH to | string | n/a | yes |
-| dcos\_version | Specifies which DC/OS version instruction to use. Options: 1.12.3, 1.11.10, etc. See dcos_download_path or dcos_version tree for a full list. | string | n/a | yes |
+| dcos\_version | Specifies which DC/OS version instruction to use. Options: 1.13.1, 1.12.3, 1.11.10, etc. See dcos_download_path or dcos_version tree for a full list. | string | n/a | yes |
 | master\_ips | List of masterips to SSH to | list | n/a | yes |
 | master\_private\_ips | list of master private ips | list | n/a | yes |
 | num\_masters | Specify the amount of masters. For redundancy you should have at least 3 | string | n/a | yes |
