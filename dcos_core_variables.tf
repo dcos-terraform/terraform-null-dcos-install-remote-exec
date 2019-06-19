@@ -17,6 +17,11 @@ variable "dcos_version" {
 #   description = "specifies which dcos role of commands to run. Options: `dcos-bootstrap`, `dcos-mesos-agent-public`, `dcos-mesos-agent` and `dcos-mesos-master`"
 # }
 
+variable "dcos_image_commit" {
+  description = "The commit hash for the build of DC/OS"
+  default     = ""
+}
+
 # DCOS bootstrap node variables
 variable "dcos_security" {
   default     = ""

@@ -178,6 +178,7 @@ module "dcos-install" {
   public_agent_private_ips  = ["${var.public_agent_private_ips}"]
   dcos_download_url         = "${module.dcos-core.download_url}"
   dcos_version              = "${var.dcos_version}"
+  dcos_image_commit         = "${var.dcos_image_commit}"
   dcos_variant              = "${var.dcos_variant}"
   dcos_config_yml           = "${module.dcos-core.config}"
   ansible_bundled_container = "${var.ansible_bundled_container}"
