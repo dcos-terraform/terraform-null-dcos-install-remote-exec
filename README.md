@@ -78,6 +78,8 @@ EOF
 | ansible\_additional\_config | Add additional config options to ansible. This is getting merged with generated defaults. Do not specify `dcos:` | string | `""` | no |
 | ansible\_bundled\_container | Docker container with bundled dcos-ansible and ansible executables | string | `"mesosphere/dcos-ansible-bundle:latest"` | no |
 | ansible\_force\_run | Run Ansible on every Terraform apply | string | `"false"` | no |
+| ansible\_winrm\_server\_cert\_validation | Validation setting for the target WinRM connection certificate | string | `"ignore"` | no |
+| ansible\_winrm\_transport | Authentication type for WinRM | string | `"basic"` | no |
 | bootstrap\_os\_user | The OS user to be used with ssh exec (only for bootstrap) | string | `""` | no |
 | bootstrap\_private\_ip | Private IP bootstrap nginx is listening on. Used to build the bootstrap URL. | string | `""` | no |
 | custom\_dcos\_download\_path | insert location of dcos installer script (optional) | string | `""` | no |

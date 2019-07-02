@@ -84,6 +84,16 @@ variable "windows_private_agent_username" {
   description = "Username for the WinRM connection"
 }
 
+variable "ansible_winrm_transport" {
+  default     = "basic"
+  description = "Authentication type for WinRM"
+}
+
+variable "ansible_winrm_server_cert_validation" {
+  default     = "ignore"
+  description = "Validation setting for the target WinRM connection certificate"
+}
+
 variable "ansible_bundled_container" {
   default     = "mesosphere/dcos-ansible-bundle:latest"
   description = "Docker container with bundled dcos-ansible and ansible executables"
