@@ -168,19 +168,24 @@ module "dcos-core" {
 
 module "dcos-install" {
   source  = "dcos-terraform/dcos-install-remote-exec-ansible/null"
-  version = "~> 0.2.0"
+  version = "~> 0.2.1"
 
-  bootstrap_ip              = "${var.bootstrap_ip}"
-  bootstrap_private_ip      = "${var.bootstrap_private_ip}"
-  bootstrap_os_user         = "${var.bootstrap_os_user}"
-  master_private_ips        = ["${var.master_private_ips}"]
-  private_agent_private_ips = ["${var.private_agent_private_ips}"]
-  public_agent_private_ips  = ["${var.public_agent_private_ips}"]
-  dcos_download_url         = "${module.dcos-core.download_url}"
-  dcos_version              = "${var.dcos_version}"
-  dcos_variant              = "${var.dcos_variant}"
-  dcos_config_yml           = "${module.dcos-core.config}"
-  ansible_bundled_container = "${var.ansible_bundled_container}"
-  ansible_additional_config = "${var.ansible_additional_config}"
-  ansible_force_run         = "${var.ansible_force_run}"
+  bootstrap_ip                         = "${var.bootstrap_ip}"
+  bootstrap_private_ip                 = "${var.bootstrap_private_ip}"
+  bootstrap_os_user                    = "${var.bootstrap_os_user}"
+  master_private_ips                   = ["${var.master_private_ips}"]
+  private_agent_private_ips            = ["${var.private_agent_private_ips}"]
+  public_agent_private_ips             = ["${var.public_agent_private_ips}"]
+  windows_private_agent_private_ips    = ["${var.windows_private_agent_private_ips}"]
+  windows_private_agent_passwords      = ["${var.windows_private_agent_passwords}"]
+  windows_private_agent_username       = "${var.windows_private_agent_username}"
+  ansible_winrm_transport              = "${var.ansible_winrm_transport}"
+  ansible_winrm_server_cert_validation = "${var.ansible_winrm_server_cert_validation}"
+  dcos_download_url                    = "${module.dcos-core.download_url}"
+  dcos_version                         = "${var.dcos_version}"
+  dcos_variant                         = "${var.dcos_variant}"
+  dcos_config_yml                      = "${module.dcos-core.config}"
+  ansible_bundled_container            = "${var.ansible_bundled_container}"
+  ansible_additional_config            = "${var.ansible_additional_config}"
+  ansible_force_run                    = "${var.ansible_force_run}"
 }
