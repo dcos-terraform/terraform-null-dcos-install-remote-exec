@@ -79,7 +79,6 @@ EOF
 | ansible\_bundled\_container | Docker container with bundled dcos-ansible and ansible executables | string | `"mesosphere/dcos-ansible-bundle:latest"` | no |
 | ansible\_force\_run | Run Ansible on every Terraform apply | string | `"false"` | no |
 | bootstrap\_os\_user | The OS user to be used with ssh exec (only for bootstrap) | string | `""` | no |
-| bootstrap\_prereq-id | Workaround making the bootstrap install depending on an external resource (e.g. nullresource.id) | string | `""` | no |
 | bootstrap\_private\_ip | Private IP bootstrap nginx is listening on. Used to build the bootstrap URL. | string | `""` | no |
 | custom\_dcos\_download\_path | insert location of dcos installer script (optional) | string | `""` | no |
 | dcos\_adminrouter\_tls\_1\_0\_enabled | Indicates whether to enable TLSv1 support in Admin Router. (optional) | string | `""` | no |
@@ -179,14 +178,14 @@ EOF
 | dcos\_zk\_master\_credentials | [Enterprise DC/OS] set the ZooKeeper master credentials (recommended) | string | `""` | no |
 | dcos\_zk\_super\_credentials | [Enterprise DC/OS] set the zk super credentials (recommended) | string | `""` | no |
 | masters\_os\_user | The OS user to be used with ssh exec ( only for masters ) | string | `""` | no |
-| masters\_prereq-id | Workaround making the masters install depending on an external resource (e.g. nullresource.id) | string | `""` | no |
 | num\_of\_private\_agents | Specify the amount of private agents. These agents will provide your main resources | string | `""` | no |
 | num\_of\_public\_agents | Specify the amount of public agents. These agents will host marathon-lb and edgelb | string | `""` | no |
 | os\_user | The OS user to be used | string | `"centos"` | no |
 | private\_agents\_os\_user | The OS user to be used with ssh exec ( only for private agents ) | string | `""` | no |
-| private\_agents\_prereq-id | Workaround making the private agent install depending on an external resource (e.g. nullresource.id) | string | `""` | no |
 | public\_agents\_os\_user | The OS user to be used with ssh exec (only for public agents) | string | `""` | no |
-| public\_agents\_prereq-id | Workaround making the public agent install depending on an external resource (e.g. nullresource.id) | string | `""` | no |
+| windows\_private\_agent\_passwords | List of private windows agent passwords to be used for WinRM | list | `<list>` | no |
+| windows\_private\_agent\_private\_ips | List of private windows agent IPs to WinRM to | list | `<list>` | no |
+| windows\_private\_agent\_username | Username for the WinRM connection | string | `"Administrator"` | no |
 
 ## Outputs
 
