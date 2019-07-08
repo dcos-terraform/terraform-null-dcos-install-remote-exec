@@ -12,11 +12,6 @@ variable "bootstrap_os_user" {
   description = "The OS user to be used with ssh exec (only for bootstrap)"
 }
 
-variable "bootstrap_prereq-id" {
-  description = "Workaround making the bootstrap install depending on an external resource (e.g. nullresource.id)"
-  default     = ""
-}
-
 variable "master_ips" {
   type        = "list"
   description = "List of masterips to SSH to"
@@ -32,11 +27,6 @@ variable "masters_os_user" {
   description = "The OS user to be used with ssh exec ( only for masters )"
 }
 
-variable "masters_prereq-id" {
-  description = "Workaround making the masters install depending on an external resource (e.g. nullresource.id)"
-  default     = ""
-}
-
 variable "private_agent_ips" {
   type        = "list"
   description = "List of private agent IPs to SSH to"
@@ -47,11 +37,6 @@ variable "private_agents_os_user" {
   description = "The OS user to be used with ssh exec ( only for private agents )"
 }
 
-variable "private_agents_prereq-id" {
-  description = "Workaround making the private agent install depending on an external resource (e.g. nullresource.id)"
-  default     = ""
-}
-
 variable "public_agent_ips" {
   type        = "list"
   description = "List of public agent IPs to SSH to"
@@ -60,11 +45,6 @@ variable "public_agent_ips" {
 variable "public_agents_os_user" {
   default     = ""
   description = "The OS user to be used with ssh exec (only for public agents)"
-}
-
-variable "public_agents_prereq-id" {
-  description = "Workaround making the public agent install depending on an external resource (e.g. nullresource.id)"
-  default     = ""
 }
 
 variable "num_masters" {
@@ -87,6 +67,31 @@ variable "private_agent_private_ips" {
 variable "public_agent_private_ips" {
   type        = "list"
   description = "List of public agent IPs to SSH to"
+}
+
+variable "windows_private_agent_private_ips" {
+  default     = []
+  description = "List of private windows agent IPs to WinRM to"
+}
+
+variable "windows_private_agent_passwords" {
+  default     = []
+  description = "List of private windows agent passwords to be used for WinRM"
+}
+
+variable "windows_private_agent_username" {
+  default     = "Administrator"
+  description = "Username for the WinRM connection"
+}
+
+variable "ansible_winrm_transport" {
+  default     = "basic"
+  description = "Authentication type for WinRM"
+}
+
+variable "ansible_winrm_server_cert_validation" {
+  default     = "ignore"
+  description = "Validation setting for the target WinRM connection certificate"
 }
 
 variable "ansible_bundled_container" {
