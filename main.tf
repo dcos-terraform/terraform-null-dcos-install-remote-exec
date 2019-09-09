@@ -64,7 +64,7 @@
 
 module "dcos-core" {
   source  = "dcos-terraform/dcos-core/template"
-  version = "~> 0.2.0"
+  version = "~> 0.2.10"
 
   bootstrap_private_ip                         = "${var.bootstrap_private_ip}"
   dcos_num_masters                             = "${var.num_masters}"
@@ -168,7 +168,7 @@ module "dcos-core" {
 
 module "dcos-install" {
   source  = "dcos-terraform/dcos-install-remote-exec-ansible/null"
-  version = "~> 0.2.3"
+  version = "~> 0.2.5"
 
   bootstrap_ip                         = "${var.bootstrap_ip}"
   bootstrap_private_ip                 = "${var.bootstrap_private_ip}"
@@ -182,7 +182,8 @@ module "dcos-install" {
   ansible_winrm_transport              = "${var.ansible_winrm_transport}"
   ansible_winrm_server_cert_validation = "${var.ansible_winrm_server_cert_validation}"
   dcos_download_url                    = "${module.dcos-core.download_url}"
-  dcos_version                         = "${var.dcos_version}"
+  dcos_download_url_checksum           = "${module.dcos-core.download_url_checksum}"
+  dcos_version                         = "${module.dcos-core.version}"
   dcos_image_commit                    = "${var.dcos_image_commit}"
   dcos_variant                         = "${var.dcos_variant}"
   dcos_config_yml                      = "${module.dcos-core.config}"
