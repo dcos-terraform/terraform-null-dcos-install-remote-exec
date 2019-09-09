@@ -159,6 +159,7 @@ module "dcos-core" {
   dcos_ucr_default_bridge_subnet               = "${var.dcos_ucr_default_bridge_subnet}"
   dcos_use_proxy                               = "${var.dcos_use_proxy}"
   dcos_version                                 = "${var.dcos_version}"
+  dcos_versions_service_url                    = "${var.dcos_versions_service_url}"
   dcos_zk_agent_credentials                    = "${var.dcos_zk_agent_credentials}"
   dcos_fault_domain_detect_contents            = "${var.dcos_fault_domain_detect_contents}"
   dcos_ip_detect_contents                      = "${var.dcos_ip_detect_contents}"
