@@ -108,3 +108,8 @@ variable "ansible_force_run" {
   default     = false
   description = "Run Ansible on every Terraform apply"
 }
+
+variable "dcos_download_url_checksum" {
+  description = "Custom DC/OS download URL SHA256 Checksum. Empty string omits checking."
+  default     = ""
+}

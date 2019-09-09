@@ -183,7 +183,7 @@ module "dcos-install" {
   ansible_winrm_transport              = "${var.ansible_winrm_transport}"
   ansible_winrm_server_cert_validation = "${var.ansible_winrm_server_cert_validation}"
   dcos_download_url                    = "${module.dcos-core.download_url}"
-  dcos_download_url_checksum           = "${module.dcos-core.download_url_checksum}"
+  dcos_download_url_checksum           = "${coalesce(var.dcos_download_url_checksum,module.dcos-core.download_url_checksum)}"
   dcos_version                         = "${module.dcos-core.version}"
   dcos_image_commit                    = "${var.dcos_image_commit}"
   dcos_variant                         = "${var.dcos_variant}"
