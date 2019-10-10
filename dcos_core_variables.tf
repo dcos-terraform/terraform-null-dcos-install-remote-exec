@@ -10,7 +10,7 @@ variable "bootstrap_private_ip" {
 }
 
 variable "dcos_version" {
-  description = "Specifies which DC/OS version instruction to use. Options: 1.13.2, 1.12.4, 1.11.10, etc. See dcos_download_path or dcos_version tree for a full list."
+  description = "Specifies which DC/OS version instruction to use. Options: 1.13.5, 1.12.4, 1.11.11, etc. See dcos_download_path or dcos_version tree for a full list."
 }
 
 variable "dcos_versions_service_url" {
