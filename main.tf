@@ -64,7 +64,7 @@
 
 module "dcos-core" {
   source  = "dcos-terraform/dcos-core/template"
-  version = "~> 0.2.10"
+  version = "~> 0.2.11"
 
   bootstrap_private_ip                         = "${var.bootstrap_private_ip}"
   dcos_num_masters                             = "${var.num_masters}"
