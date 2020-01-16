@@ -64,7 +64,7 @@
 
 module "dcos-core" {
   source  = "dcos-terraform/dcos-core/template"
-  version = "~> 0.2.11"
+  version = "~> 0.2.12"
 
   bootstrap_private_ip                         = "${var.bootstrap_private_ip}"
   dcos_num_masters                             = "${var.num_masters}"
@@ -95,7 +95,6 @@ module "dcos-core" {
   dcos_calico_vxlan_port                       = "${var.dcos_calico_vxlan_port}"
   dcos_calico_ipinip_mtu                       = "${var.dcos_calico_ipinip_mtu}"
   dcos_calico_vxlan_mtu                        = "${var.dcos_calico_vxlan_mtu}"
-  dcos_calico_vxlan_port                       = "${var.dcos_calico_vxlan_port}"
   dcos_calico_vxlan_vni                        = "${var.dcos_calico_vxlan_vni}"
   dcos_calico_veth_mtu                         = "${var.dcos_calico_veth_mtu}"
   dcos_check_time                              = "${var.dcos_check_time}"
