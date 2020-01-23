@@ -66,6 +66,7 @@ EOF
 |------|-------------|:----:|:-----:|:-----:|
 | bootstrap\_ip | The bootstrap IP to SSH to | string | n/a | yes |
 | dcos\_version | Specifies which DC/OS version instruction to use. Options: 1.13.5, 1.12.4, 1.11.11, etc. See dcos_download_path or dcos_version tree for a full list. | string | n/a | yes |
+| dcos\_calico\_network\_cidr | Subnet allocated for calico. When windows is not enabled, this field MUST be set by the operator as a mandatory configuration considering possible unrecoverable accidents when the subnet used by Calico conflicts with the ones for infrastructure etc. The subnet specified by `calico_network_cidr` MUST not overlap with those for VXLAN backends or virtual networks defined for [DC/OS virtual networks](https://github.com/mesosphere/dcos-docs-site/blob/staging/pages/mesosphere/dcos/1.14/installing/production/advanced-configuration/configuration-reference/index.md#dcos_overlay_enable). | string | n/a | yes when windows is not enabled |
 | master\_ips | List of masterips to SSH to | list | n/a | yes |
 | master\_private\_ips | list of master private ips | list | n/a | yes |
 | num\_masters | Specify the amount of masters. For redundancy you should have at least 3 | string | n/a | yes |
@@ -101,6 +102,12 @@ EOF
 | dcos\_aws\_template\_upload | To automatically upload the customized advanced templates to your S3 bucket. (optional) | string | `""` | no |
 | dcos\_bootstrap\_port | Port of the bootstrap URL | string | `"8080"` | no |
 | dcos\_bouncer\_expiration\_auth\_token\_days | [Enterprise DC/OS] Sets the auth token time-to-live (TTL) for Identity and Access Management. (optional) | string | `""` | no |
+| dcos\_calico\_vxlan\_enabled | Control, whether IP-in-IP or VXLAN mode is used for calico, by default VXLAN, is suggested to be used instead of VXLAN. dcos_calico_vxlan_enabled is supposed to set to 'true' for the environment that IP in IP is not supported, like Azure | string | `"true"` | no |
+| dcos\_calico\_vxlan\_port | The UDP port used for calico VXLAN. This configuration works when dcos_calico_vxlan_enabled is set to be true | string | `"4789"` | no |
+| dcos\_calico\_ipinip\_mtu | The MTU to set on the Calico IPIP tunnel device. This configuration works when dcos_calico_vxlan_enabled is set to be false. Please refer to [this](https://docs.projectcalico.org/v3.8/networking/mtu) for a suitable MTU configuration | string | `"1480"` | no |
+| dcos\_calico\_vxlan\_vni | The virtual network ID used for calico VXLAN. This configuration works when dcos_calico_vxlan_enabled is set to be true | string | `"4096"` | no |
+| dcos\_calico\_vxlan\_mtu | The MTU to set on the Calico VXLAN tunnel device. This configuration works when dcos_calico_vxlan_enabled is set to be true. Please refer to [this](https://docs.projectcalico.org/v3.8/networking/mtu) for a suitable MTU configuration | string | `"1450"` | no |
+| dcos\_calico\_veth\_mtu | The MTU to set on the veth pair devices, e.g. both the container interface and host-end interface. Please refer to [this](https://docs.projectcalico.org/v3.8/networking/mtu) for a suitable MTU configuration | string | `"1500"` | no |
 | dcos\_ca\_certificate\_chain\_path | [Enterprise DC/OS] Path (relative to the $DCOS_INSTALL_DIR) to a file containing the complete CA certification chain required for end-entity certificate verification, in the OpenSSL PEM format. (optional) | string | `""` | no |
 | dcos\_ca\_certificate\_key\_path | [Enterprise DC/OS] Path (relative to the $DCOS_INSTALL_DIR) to a file containing a single X.509 certificate private key in the OpenSSL PEM format. (optional) | string | `""` | no |
 | dcos\_ca\_certificate\_path | [Enterprise DC/OS] Path (relative to the $DCOS_INSTALL_DIR) to a file containing a single X.509 CA certificate in the OpenSSL PEM format. (optional) | string | `""` | no |

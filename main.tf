@@ -64,7 +64,7 @@
 
 module "dcos-core" {
   source  = "dcos-terraform/dcos-core/template"
-  version = "~> 0.2.11"
+  version = "~> 0.2.12"
 
   bootstrap_private_ip                         = "${var.bootstrap_private_ip}"
   dcos_num_masters                             = "${var.num_masters}"
@@ -90,6 +90,13 @@ module "dcos-core" {
   dcos_ca_certificate_chain_path               = "${var.dcos_ca_certificate_chain_path}"
   dcos_ca_certificate_key_path                 = "${var.dcos_ca_certificate_key_path}"
   dcos_ca_certificate_path                     = "${var.dcos_ca_certificate_path}"
+  dcos_calico_network_cidr                     = "${var.dcos_calico_network_cidr}"
+  dcos_calico_vxlan_enabled                    = "${var.dcos_calico_vxlan_enabled}"
+  dcos_calico_vxlan_port                       = "${var.dcos_calico_vxlan_port}"
+  dcos_calico_ipinip_mtu                       = "${var.dcos_calico_ipinip_mtu}"
+  dcos_calico_vxlan_mtu                        = "${var.dcos_calico_vxlan_mtu}"
+  dcos_calico_vxlan_vni                        = "${var.dcos_calico_vxlan_vni}"
+  dcos_calico_veth_mtu                         = "${var.dcos_calico_veth_mtu}"
   dcos_check_time                              = "${var.dcos_check_time}"
   dcos_cluster_docker_credentials              = "${var.dcos_cluster_docker_credentials}"
   dcos_cluster_docker_credentials_dcos_owned   = "${var.dcos_cluster_docker_credentials_dcos_owned}"
