@@ -113,3 +113,8 @@ variable "dcos_download_url_checksum" {
   description = "Custom DC/OS download URL SHA256 Checksum. Empty string omits checking."
   default     = ""
 }
+
+variable "adminrouter_grpc_proxy_port" {
+  description = ""
+  default     = 12379
+}
