@@ -64,11 +64,13 @@
 
 module "dcos-core" {
   source  = "dcos-terraform/dcos-core/template"
-  version = "~> 0.2.12"
+  version = "~> 0.2.13"
 
   bootstrap_private_ip                         = "${var.bootstrap_private_ip}"
   dcos_num_masters                             = "${var.num_masters}"
   custom_dcos_download_path                    = "${var.custom_dcos_download_path}"
+  custom_dcos_windows_download_path            = "${var.custom_dcos_windows_download_path}"
+  dcos_enable_windows_agents                   = "${var.dcos_enable_windows_agents}"
   dcos_adminrouter_tls_1_0_enabled             = "${var.dcos_adminrouter_tls_1_0_enabled}"
   dcos_adminrouter_tls_1_1_enabled             = "${var.dcos_adminrouter_tls_1_1_enabled}"
   dcos_adminrouter_tls_1_2_enabled             = "${var.dcos_adminrouter_tls_1_2_enabled}"
@@ -176,7 +178,7 @@ module "dcos-core" {
 
 module "dcos-install" {
   source  = "dcos-terraform/dcos-install-remote-exec-ansible/null"
-  version = "~> 0.2.5"
+  version = "~> 0.2.10"
 
   bootstrap_ip                         = "${var.bootstrap_ip}"
   bootstrap_private_ip                 = "${var.bootstrap_private_ip}"
@@ -191,6 +193,8 @@ module "dcos-install" {
   ansible_winrm_server_cert_validation = "${var.ansible_winrm_server_cert_validation}"
   dcos_download_url                    = "${module.dcos-core.download_url}"
   dcos_download_url_checksum           = "${coalesce(var.dcos_download_url_checksum,module.dcos-core.download_url_checksum)}"
+  dcos_download_windows_url            = "${module.dcos-core.download_windows_url}"
+  dcos_download_windows_url_checksum   = "${coalesce(var.dcos_download_windows_url_checksum,module.dcos-core.download_windows_url_checksum)}"
   dcos_version                         = "${module.dcos-core.version}"
   dcos_image_commit                    = "${var.dcos_image_commit}"
   dcos_variant                         = "${var.dcos_variant}"
