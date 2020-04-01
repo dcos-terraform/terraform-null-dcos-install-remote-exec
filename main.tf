@@ -64,7 +64,7 @@
 
 module "dcos-core" {
   source  = "dcos-terraform/dcos-core/template"
-  version = "~> 0.2.12"
+  version = "~> 0.2.13"
 
   bootstrap_private_ip                         = "${var.bootstrap_private_ip}"
   dcos_num_masters                             = "${var.num_masters}"
@@ -178,7 +178,7 @@ module "dcos-core" {
 
 module "dcos-install" {
   source  = "dcos-terraform/dcos-install-remote-exec-ansible/null"
-  version = "~> 0.2.5"
+  version = "~> 0.2.10"
 
   bootstrap_ip                         = "${var.bootstrap_ip}"
   bootstrap_private_ip                 = "${var.bootstrap_private_ip}"
