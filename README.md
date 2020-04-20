@@ -75,6 +75,7 @@ EOF
 | private\_agent\_private\_ips | List of private agent IPs to SSH to | list | n/a | yes |
 | public\_agent\_ips | List of public agent IPs to SSH to | list | n/a | yes |
 | public\_agent\_private\_ips | List of public agent IPs to SSH to | list | n/a | yes |
+| adminrouter\_grpc\_proxy\_port |  | string | `"12379"` | no |
 | ansible\_additional\_config | Add additional config options to ansible. This is getting merged with generated defaults. Do not specify `dcos:` | string | `""` | no |
 | ansible\_bundled\_container | Docker container with bundled dcos-ansible and ansible executables | string | `"mesosphere/dcos-ansible-bundle:latest"` | no |
 | ansible\_force\_run | Run Ansible on every Terraform apply | string | `"false"` | no |
