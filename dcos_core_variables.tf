@@ -10,7 +10,7 @@ variable "bootstrap_private_ip" {
 }
 
 variable "dcos_version" {
-  description = "Specifies which DC/OS version instruction to use. Options: 1.13.5, 1.12.4, 1.11.11, etc. See dcos_download_path or dcos_version tree for a full list."
+  description = "Specifies which DC/OS version instruction to use. Options: 2.0.0, 1.13.6, 1.12.4, 1.11.12, etc. See https://versions.d2iq.com/version for a full list."
 }
 
 variable "dcos_versions_service_url" {
@@ -495,6 +495,16 @@ variable "dcos_cluster_docker_registry_url" {
 variable "custom_dcos_download_path" {
   default     = ""
   description = "insert location of dcos installer script (optional)"
+}
+
+variable "custom_dcos_windows_download_path" {
+  default     = ""
+  description = "insert location of dcos windows installer script (optional)"
+}
+
+variable "dcos_enable_windows_agents" {
+  default     = ""
+  description = "enable windows agents. value must be true or false (optional)"
 }
 
 variable "dcos_cluster_docker_registry_enabled" {
