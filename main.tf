@@ -64,7 +64,7 @@
 
 module "dcos-core" {
   source  = "dcos-terraform/dcos-core/template"
-  version = "~> 0.2.13"
+  version = "~> 0.2.14"
 
   bootstrap_private_ip                         = "${var.bootstrap_private_ip}"
   dcos_num_masters                             = "${var.num_masters}"
@@ -174,6 +174,7 @@ module "dcos-core" {
   dcos_ip_detect_contents                      = "${var.dcos_ip_detect_contents}"
   dcos_ip_detect_public_contents               = "${var.dcos_ip_detect_public_contents}"
   dcos_enable_mesos_input_plugin               = "${var.dcos_enable_mesos_input_plugin}"
+  adminrouter_grpc_proxy_port                  = "${var.adminrouter_grpc_proxy_port}"
 }
 
 module "dcos-install" {
