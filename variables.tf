@@ -71,27 +71,27 @@ variable "public_agent_private_ips" {
 
 variable "windows_private_agent_private_ips" {
   default     = []
-  description = "List of private windows agent IPs to WinRM to"
+  description = "[DEPRECATED] List of private windows agent IPs to WinRM to"
 }
 
 variable "windows_private_agent_passwords" {
   default     = []
-  description = "List of private windows agent passwords to be used for WinRM"
+  description = "[DEPRECATED] List of private windows agent passwords to be used for WinRM"
 }
 
 variable "windows_private_agent_username" {
   default     = "Administrator"
-  description = "Username for the WinRM connection"
+  description = "[DEPRECATED] Username for the WinRM connection"
 }
 
 variable "ansible_winrm_transport" {
   default     = "basic"
-  description = "Authentication type for WinRM"
+  description = "[DEPRECATED] Authentication type for WinRM"
 }
 
 variable "ansible_winrm_server_cert_validation" {
   default     = "ignore"
-  description = "Validation setting for the target WinRM connection certificate"
+  description = "[DEPRECATED] Validation setting for the target WinRM connection certificate"
 }
 
 variable "ansible_bundled_container" {
@@ -115,7 +115,7 @@ variable "dcos_download_url_checksum" {
 }
 
 variable "dcos_download_windows_url_checksum" {
-  description = "Custom DC/OS windows download URL SHA256 Checksum. Empty string omits checking."
+  description = "[DEPRECATED] Custom DC/OS windows download URL SHA256 Checksum. Empty string omits checking."
   default     = ""
 }
 
