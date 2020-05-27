@@ -13,12 +13,12 @@ variable "bootstrap_os_user" {
 }
 
 variable "master_ips" {
-  type        = "list"
+  type        = list(string)
   description = "List of masterips to SSH to"
 }
 
 variable "master_private_ips" {
-  type        = "list"
+  type        = list(string)
   description = "list of master private ips"
 }
 
@@ -28,7 +28,7 @@ variable "masters_os_user" {
 }
 
 variable "private_agent_ips" {
-  type        = "list"
+  type        = list(string)
   description = "List of private agent IPs to SSH to"
 }
 
@@ -38,7 +38,7 @@ variable "private_agents_os_user" {
 }
 
 variable "public_agent_ips" {
-  type        = "list"
+  type        = list(string)
   description = "List of public agent IPs to SSH to"
 }
 
@@ -60,12 +60,12 @@ variable "num_public_agents" {
 }
 
 variable "private_agent_private_ips" {
-  type        = "list"
+  type        = list(string)
   description = "List of private agent IPs to SSH to"
 }
 
 variable "public_agent_private_ips" {
-  type        = "list"
+  type        = list(string)
   description = "List of public agent IPs to SSH to"
 }
 
@@ -123,3 +123,4 @@ variable "adminrouter_grpc_proxy_port" {
   description = ""
   default     = 12379
 }
+
