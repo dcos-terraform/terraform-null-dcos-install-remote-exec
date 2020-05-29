@@ -8,7 +8,7 @@
  * ```hcl
  *  module "dcos-install" {
  *   source = "dcos-terraform/dcos-install-remote-exec/null"
- *   version = "~> 0.2.0"
+ *   version = "~> 0.3.0"
  *   bootstrap_ip         = "${module.dcos-infrastructure.bootstrap.public_ip}"
  *   bootstrap_private_ip = "${module.dcos-infrastructure.bootstrap.private_ip}"
  *   bootstrap_os_user    = "${module.dcos-infrastructure.bootstrap.os_user}"
@@ -63,8 +63,8 @@
  */
 
 module "dcos-core" {
-  source  = "../terraform-template-dcos-core"
-  #version = "~> 0.2.14"
+  source  = "dcos-terraform/dcos-core/template"
+  version = "~> 0.3.0"
 
   bootstrap_private_ip                         = var.bootstrap_private_ip
   dcos_num_masters                             = var.num_masters
@@ -140,44 +140,44 @@ module "dcos-core" {
   dcos_mesos_max_completed_tasks_per_framework = var.dcos_mesos_max_completed_tasks_per_framework
   dcos_no_proxy                                = var.dcos_no_proxy
   #dcos_num_masters                             = var.dcos_num_masters
-  dcos_oauth_enabled                           = var.dcos_oauth_enabled
-  dcos_overlay_config_attempts                 = var.dcos_overlay_config_attempts
-  dcos_overlay_enable                          = var.dcos_overlay_enable
-  dcos_overlay_mtu                             = var.dcos_overlay_mtu
-  dcos_overlay_network                         = var.dcos_overlay_network
-  dcos_package_storage_uri                     = var.dcos_package_storage_uri
-  dcos_previous_version                        = var.dcos_previous_version
-  dcos_previous_version_master_index           = var.dcos_previous_version_master_index
-  dcos_process_timeout                         = var.dcos_process_timeout
-  dcos_public_agent_list                       = var.dcos_public_agent_list
-  dcos_resolvers                               = var.dcos_resolvers
-  dcos_rexray_config                           = var.dcos_rexray_config
-  dcos_rexray_config_filename                  = var.dcos_rexray_config_filename
-  dcos_rexray_config_method                    = var.dcos_rexray_config_method
-  dcos_s3_bucket                               = var.dcos_s3_bucket
-  dcos_s3_prefix                               = var.dcos_s3_prefix
-  dcos_security                                = var.dcos_security
-  dcos_skip_checks                             = var.dcos_skip_checks
-  dcos_staged_package_storage_uri              = var.dcos_staged_package_storage_uri
-  dcos_superuser_password_hash                 = var.dcos_superuser_password_hash
-  dcos_superuser_username                      = var.dcos_superuser_username
-  dcos_telemetry_enabled                       = var.dcos_telemetry_enabled
-  dcos_variant                                 = var.dcos_variant
-  dcos_ucr_default_bridge_subnet               = var.dcos_ucr_default_bridge_subnet
-  dcos_use_proxy                               = var.dcos_use_proxy
-  dcos_version                                 = var.dcos_version
-  dcos_versions_service_url                    = var.dcos_versions_service_url
-  dcos_zk_agent_credentials                    = var.dcos_zk_agent_credentials
-  dcos_fault_domain_detect_contents            = var.dcos_fault_domain_detect_contents
-  dcos_ip_detect_contents                      = var.dcos_ip_detect_contents
-  dcos_ip_detect_public_contents               = var.dcos_ip_detect_public_contents
-  dcos_enable_mesos_input_plugin               = var.dcos_enable_mesos_input_plugin
-  adminrouter_grpc_proxy_port                  = var.adminrouter_grpc_proxy_port
+  dcos_oauth_enabled                 = var.dcos_oauth_enabled
+  dcos_overlay_config_attempts       = var.dcos_overlay_config_attempts
+  dcos_overlay_enable                = var.dcos_overlay_enable
+  dcos_overlay_mtu                   = var.dcos_overlay_mtu
+  dcos_overlay_network               = var.dcos_overlay_network
+  dcos_package_storage_uri           = var.dcos_package_storage_uri
+  dcos_previous_version              = var.dcos_previous_version
+  dcos_previous_version_master_index = var.dcos_previous_version_master_index
+  dcos_process_timeout               = var.dcos_process_timeout
+  dcos_public_agent_list             = var.dcos_public_agent_list
+  dcos_resolvers                     = var.dcos_resolvers
+  dcos_rexray_config                 = var.dcos_rexray_config
+  dcos_rexray_config_filename        = var.dcos_rexray_config_filename
+  dcos_rexray_config_method          = var.dcos_rexray_config_method
+  dcos_s3_bucket                     = var.dcos_s3_bucket
+  dcos_s3_prefix                     = var.dcos_s3_prefix
+  dcos_security                      = var.dcos_security
+  dcos_skip_checks                   = var.dcos_skip_checks
+  dcos_staged_package_storage_uri    = var.dcos_staged_package_storage_uri
+  dcos_superuser_password_hash       = var.dcos_superuser_password_hash
+  dcos_superuser_username            = var.dcos_superuser_username
+  dcos_telemetry_enabled             = var.dcos_telemetry_enabled
+  dcos_variant                       = var.dcos_variant
+  dcos_ucr_default_bridge_subnet     = var.dcos_ucr_default_bridge_subnet
+  dcos_use_proxy                     = var.dcos_use_proxy
+  dcos_version                       = var.dcos_version
+  dcos_versions_service_url          = var.dcos_versions_service_url
+  dcos_zk_agent_credentials          = var.dcos_zk_agent_credentials
+  dcos_fault_domain_detect_contents  = var.dcos_fault_domain_detect_contents
+  dcos_ip_detect_contents            = var.dcos_ip_detect_contents
+  dcos_ip_detect_public_contents     = var.dcos_ip_detect_public_contents
+  dcos_enable_mesos_input_plugin     = var.dcos_enable_mesos_input_plugin
+  adminrouter_grpc_proxy_port        = var.adminrouter_grpc_proxy_port
 }
 
 module "dcos-install" {
-  source  = "../terraform-null-dcos-install-remote-exec-ansible"
-  #version = "~> 0.2.10"
+  source  = "dcos-terraform/dcos-install-remote-exec-ansible/null"
+  version = "~> 0.3.0"
 
   bootstrap_ip                         = var.bootstrap_ip
   bootstrap_private_ip                 = var.bootstrap_private_ip
