@@ -13,12 +13,12 @@ variable "bootstrap_os_user" {
 }
 
 variable "master_ips" {
-  type        = "list"
+  type        = list(string)
   description = "List of masterips to SSH to"
 }
 
 variable "master_private_ips" {
-  type        = "list"
+  type        = list(string)
   description = "list of master private ips"
 }
 
@@ -28,7 +28,7 @@ variable "masters_os_user" {
 }
 
 variable "private_agent_ips" {
-  type        = "list"
+  type        = list(string)
   description = "List of private agent IPs to SSH to"
 }
 
@@ -38,7 +38,7 @@ variable "private_agents_os_user" {
 }
 
 variable "public_agent_ips" {
-  type        = "list"
+  type        = list(string)
   description = "List of public agent IPs to SSH to"
 }
 
@@ -60,38 +60,13 @@ variable "num_public_agents" {
 }
 
 variable "private_agent_private_ips" {
-  type        = "list"
+  type        = list(string)
   description = "List of private agent IPs to SSH to"
 }
 
 variable "public_agent_private_ips" {
-  type        = "list"
+  type        = list(string)
   description = "List of public agent IPs to SSH to"
-}
-
-variable "windows_private_agent_private_ips" {
-  default     = []
-  description = "List of private windows agent IPs to WinRM to"
-}
-
-variable "windows_private_agent_passwords" {
-  default     = []
-  description = "List of private windows agent passwords to be used for WinRM"
-}
-
-variable "windows_private_agent_username" {
-  default     = "Administrator"
-  description = "Username for the WinRM connection"
-}
-
-variable "ansible_winrm_transport" {
-  default     = "basic"
-  description = "Authentication type for WinRM"
-}
-
-variable "ansible_winrm_server_cert_validation" {
-  default     = "ignore"
-  description = "Validation setting for the target WinRM connection certificate"
 }
 
 variable "ansible_bundled_container" {
@@ -111,11 +86,6 @@ variable "ansible_force_run" {
 
 variable "dcos_download_url_checksum" {
   description = "Custom DC/OS download URL SHA256 Checksum. Empty string omits checking."
-  default     = ""
-}
-
-variable "dcos_download_windows_url_checksum" {
-  description = "[DEPRECATED] Custom DC/OS windows download URL SHA256 Checksum. Empty string omits checking."
   default     = ""
 }
 
