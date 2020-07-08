@@ -185,6 +185,7 @@ module "dcos-install" {
   private_agent_private_ips = var.private_agent_private_ips
   public_agent_private_ips  = var.public_agent_private_ips
   dcos_download_url         = module.dcos-core.download_url
+  bootstrap_ssh_private_key = var.bootstrap_ssh_private_key
   dcos_download_url_checksum = coalesce(
     var.dcos_download_url_checksum,
     module.dcos-core.download_url_checksum,
