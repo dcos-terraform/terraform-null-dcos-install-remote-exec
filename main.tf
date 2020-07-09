@@ -186,10 +186,10 @@ module "dcos-install" {
   public_agent_private_ips  = var.public_agent_private_ips
   dcos_download_url         = module.dcos-core.download_url
   bootstrap_ssh_private_key = var.bootstrap_ssh_private_key
-  dcos_download_url_checksum = coalesce(
+  dcos_download_url_checksum = try(coalesce(
     var.dcos_download_url_checksum,
     module.dcos-core.download_url_checksum,
-  )
+  ), "")
   dcos_version              = module.dcos-core.version
   dcos_image_commit         = var.dcos_image_commit
   dcos_variant              = var.dcos_variant
