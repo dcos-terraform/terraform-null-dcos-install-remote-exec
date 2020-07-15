@@ -12,6 +12,11 @@ variable "bootstrap_os_user" {
   description = "The OS user to be used with ssh exec (only for bootstrap)"
 }
 
+variable "bootstrap_ssh_private_key" {
+  default     = ""
+  description = "SSH Private key to be used ( default use SSH_Agent)"
+}
+
 variable "master_ips" {
   type        = list(string)
   description = "List of masterips to SSH to"
